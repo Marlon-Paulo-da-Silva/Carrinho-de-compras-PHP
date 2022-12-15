@@ -31,12 +31,41 @@
         <h6>Meu Carrinho</h6>
 
         <?php
+         if(isset($_SESSION['cart'])){
+          $product_id = array_column($_SESSION['cart'], 'product_id');
 
+          $result = $db->getData();
+          while($row = mysqli_fetch_assoc($result)){
+            foreach($product_id as $id){
+              if($row['id'] == $id){
+                cartElement($row['product_image'], $row['product_name'], $row['product_price']);
+              }
+            }
+          }
+         } else {
+          echo "<h5>Carrinho está vazio</h5>";
+         }
         ?>
       </div>
     </div>
-    <div class="col-md-5">
-
+    <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
+      <div class="pt-4">
+        <h6>DETALHES DO PREÇO</h6>
+        <hr>
+        <div class="row price-details">
+          <div class="col-md-6">
+            <?php
+              if(isset($_SESSION['cart'])){
+                $count = count($_SESSION['cart']);
+                echo "<h6>Preço: ($count itens)</h6>";
+              } else {
+                echo "<h6>Preço: (0 itens)</h6>";
+              }
+            ?>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
