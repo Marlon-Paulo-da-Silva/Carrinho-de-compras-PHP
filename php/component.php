@@ -1,6 +1,6 @@
 <?php
 
-function component($productName, $productPrice, $productImg){
+function component($productName, $productPrice, $productImg, $product_id){
   $element = "
 
     <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
@@ -27,6 +27,7 @@ function component($productName, $productPrice, $productImg){
             </h5>
 
             <button type=\"submit\" name=\"add\" class=\"btn btn-warning my-3\">Adicionar ao carrinho <i class=\"fa fa-shopping-cart\"></i></button>
+            <input type=\"hidden\" name=\"product_id\" value=\"$product_id\">
           </div>
         </div>
       </form>
