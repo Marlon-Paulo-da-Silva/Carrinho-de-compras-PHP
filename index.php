@@ -15,11 +15,11 @@
     if(isset($_SESSION['cart'])){
 
       $item_array_id =  array_column($_SESSION['cart'], "product_id");
-      echo "if _SESSION[cart]</br>";
+      // echo "if _SESSION[cart]</br>";
       // print_r($item_array_id);
 
       if(in_array($_POST['product_id'], $item_array_id)){
-        echo "<script>alert('Produto está pronto para ser adicionado no carrinho')</script>";
+        // echo "<script>alert('Produto está pronto para ser adicionado no carrinho')</script>";
         // echo "<script>window.location = 'index.php'</script>";
 
       } else {

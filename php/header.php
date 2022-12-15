@@ -17,7 +17,7 @@
               <?php
                 if(isset($_SESSION['cart'])){
                   $count = count($_SESSION['cart']);
-                  echo "<span id=\"cartcount\" class=\"text-warning bg-light\">$count</span>";
+                  echo "<span id=\"cartcount\" class=\"text-warning bg-secondary border  border-white\">$count</span>";
                 } else {
                   echo "<span id=\"cartcount\" class=\"text-warning bg-light\">0</span>";
                 }
