@@ -37,9 +37,9 @@ function component($productName, $productPrice, $productImg, $product_id){
   echo $element;
 }
 
-function cartElement($productImg, $productName, $productPrice){
+function cartElement($productImg, $productName, $productPrice, $productId){
   $element = "
-  <form action=\"cart.php\" method=\"get\" class=\"cart-items\">
+  <form action=\"cart.php?action=remove&id=$productId\" method=\"post\" class=\"cart-items\">
     <div class=\"border rounded\">
       <div class=\"row bg-white\">
         <div class=\"col-md-3 pl-0\">

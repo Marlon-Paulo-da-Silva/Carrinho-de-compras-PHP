@@ -15,8 +15,11 @@
     if(isset($_SESSION['cart'])){
 
       $item_array_id =  array_column($_SESSION['cart'], "product_id");
-      // echo "if _SESSION[cart]</br>";
+      // echo "</br></br>item_array_id</br>";
+      // echo "<pre>";
       // print_r($item_array_id);
+      // echo "</pre>";
+      
 
       if(in_array($_POST['product_id'], $item_array_id)){
         // echo "<script>alert('Produto está pronto para ser adicionado no carrinho')</script>";
@@ -29,7 +32,10 @@
         );
         
         $_SESSION['cart'][$count] = $item_array;
+        // echo "</br></br>_SESSION[cart][count]</br>";
+        // echo "<pre>";
         // print_r($_SESSION['cart']);
+        // echo "</pre>";
       }
     } else {
       $item_array = array(
@@ -37,12 +43,7 @@
       );
 
       // Create new session variable
-      $_SESSION['cart'][0] = $item_array;
-      echo "ELSE _SESSION[cart]</br></br>";
-      echo "<pre>";
-      print_r($_SESSION['cart']);
-      echo "</pre>";
-    
+      $_SESSION['cart'][0] = $item_array;   
       
     }
 

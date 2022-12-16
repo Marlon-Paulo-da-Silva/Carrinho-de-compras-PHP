@@ -6,6 +6,17 @@
 
   $db = new CreateDb("Productdb", "Productdb");
 
+  if(isset($_POST['remove'])){
+    if($_GET['action'] == 'remove'){
+      foreach($_SESSION['cart']  as $key => $value){
+        if($value['product_id'] == $_GET['id']){
+          unset($_SESSION['cart'][$key]);
+          echo "<script>window.location = 'cart.php'</script>";
+        }
+      }
+    }
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,6 +42,7 @@
         <h6>Meu Carrinho</h6>
 
         <?php
+        $total = 0;
          if(isset($_SESSION['cart'])){
           $product_id = array_column($_SESSION['cart'], 'product_id');
 
@@ -38,7 +50,8 @@
           while($row = mysqli_fetch_assoc($result)){
             foreach($product_id as $id){
               if($row['id'] == $id){
-                cartElement($row['product_image'], $row['product_name'], $row['product_price']);
+                cartElement($row['product_image'], $row['product_name'], $row['product_price'], $row['id']);
+                $total = $total + (int)$row['product_price'];
               }
             }
           }
@@ -55,6 +68,7 @@
         <div class="row price-details">
           <div class="col-md-6">
             <?php
+              
               if(isset($_SESSION['cart'])){
                 $count = count($_SESSION['cart']);
                 echo "<h6>Preço: ($count itens)</h6>";
@@ -62,15 +76,23 @@
                 echo "<h6>Preço: (0 itens)</h6>";
               }
             ?>
+            <h6>Frete </h6>
+            <hr>
+            <h6>Preço total</h6>
           </div>
-          <div class="col-md-6"></div>
+          <div class="col-md-6">
+            <h6>R$ <?php echo $total; ?></h6>
+            <h6 class="text-success">Grátis</h6>
+            <hr>
+            <h6>R$ <?php echo $total; ?> </h6>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
   
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
 
 </body>
 </html>
